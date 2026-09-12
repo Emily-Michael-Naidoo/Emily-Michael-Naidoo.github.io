@@ -1,15 +1,2049 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Emily Michaele Naidoo</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-       <h1 style="text-align: center;">Error 404</h1>
-       <h3 style="text-align: center;">Site down for maintance</h3>
-    </body>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emily Naidoo — Aspiring Chartered Accountant</title>
+<meta name="description" content="Emily Naidoo — Accounting student at Emeris, pursuing CA(SA). Portfolio, experience and contact details.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS — deep purple + silver, glass-on-dark
+   ============================================================ */
+:root{
+  --bg:            #120C24;
+  --bg-deep:       #0A0716;
+  --bg-elev:       #1C1536;
+  --bg-elev-2:     #241C42;
+  --line:          rgba(203,201,224,.14);
+  --line-strong:   rgba(203,201,224,.28);
+
+  --silver:        #C7C4DA;
+  --silver-bright: #ECEAF6;
+  --white:         #F7F6FC;
+  --ink-soft:      #A6A2C2;
+
+  --purple:        #7C3AED;
+  --purple-2:      #9D5CFF;
+  --purple-deep:   #4C1D95;
+  --violet-glow:   #B490FF;
+
+  --grad-primary:  linear-gradient(135deg, #6D28D9 0%, #9D5CFF 55%, #C7C4DA 130%);
+  --grad-text:     linear-gradient(120deg, var(--silver-bright), var(--purple-2) 60%, var(--silver-bright));
+
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --max: 1180px;
+  --edge: 24px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --ease-spring: cubic-bezier(.34,1.56,.64,1);
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*,*::before,*::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+h1,h2,h3,h4{ font-family: var(--font-display); margin:0; color: var(--white); letter-spacing:-.01em; }
+p{ margin: 0 0 1em; color: var(--ink-soft); }
+a{ color: inherit; text-decoration: none; }
+ul{ margin:0; padding:0; list-style:none; }
+img{ max-width:100%; display:block; }
+button{ font: inherit; }
+
+:focus-visible{ outline: 2px solid var(--purple-2); outline-offset: 3px; border-radius:2px; }
+
+.wrap{ max-width: var(--max); margin: 0 auto; padding: 0 var(--edge); }
+
+body::before{
+  content:""; position:fixed; inset:0; z-index:-2; background: var(--bg-deep);
+}
+
+/* ambient floating mesh blobs, page background */
+.mesh{
+  position: fixed; inset: 0; z-index:-1; overflow:hidden; pointer-events:none;
+}
+.mesh span{
+  position:absolute; border-radius:50%; filter: blur(90px); opacity:.5;
+  animation: drift 22s ease-in-out infinite alternate;
+}
+.mesh span:nth-child(1){ width:520px; height:520px; background: var(--purple-deep); top:-160px; left:-120px; animation-duration: 26s; }
+.mesh span:nth-child(2){ width:420px; height:420px; background: #2C1F55; bottom:-140px; right:-80px; animation-duration: 30s; animation-delay: -6s; }
+.mesh span:nth-child(3){ width:340px; height:340px; background: var(--purple); top:35%; right:12%; opacity:.28; animation-duration: 20s; animation-delay: -3s; }
+@keyframes drift{
+  0%{ transform: translate(0,0) scale(1); }
+  100%{ transform: translate(40px,-30px) scale(1.12); }
+}
+
+/* scroll progress bar */
+.progress-bar{
+  position: fixed; top:0; left:0; height:3px; width:0%;
+  background: var(--grad-primary); z-index: 1000;
+  transition: width .1s linear;
+}
+
+/* ============================================================
+   HEADER / NAV
+   ============================================================ */
+.site-header{
+  position: sticky; top:0; z-index: 100;
+  background: rgba(18,12,36,.72);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--line);
+}
+.header-row{ display:flex; align-items:center; justify-content:space-between; height: 78px; }
+.brand{ display:flex; align-items:center; gap:11px; }
+.brand-mark{
+  width: 38px; height:38px; border-radius: 10px;
+  background: var(--grad-primary);
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--font-mono); font-weight:600; font-size:.72rem; color: var(--white);
+  box-shadow: 0 6px 18px -6px rgba(124,58,237,.7);
+}
+.brand-name{ font-weight:600; font-size:1.08rem; letter-spacing:-.01em; }
+
+.tabs{ display:flex; gap: 4px; position:relative; }
+.tabs a{
+  font-size: .88rem; font-weight:500; padding: 10px 16px; border-radius: 20px;
+  color: var(--ink-soft); position:relative; transition: color .25s var(--ease);
+}
+.tabs a:hover{ color: var(--white); }
+.tabs a.active{ color: var(--white); }
+.tabs a.active::after{
+  content:""; position:absolute; left:16px; right:16px; bottom:4px; height:2px;
+  background: var(--grad-primary); border-radius:2px;
+}
+
+.nav-cta{
+  font-size:.82rem; font-weight:600; padding: 10px 20px; border-radius: 30px;
+  background: var(--grad-primary); color: var(--white);
+  box-shadow: 0 8px 20px -8px rgba(124,58,237,.65);
+  transition: transform .2s var(--ease-spring), box-shadow .2s var(--ease);
+  white-space: nowrap;
+}
+.nav-cta:hover{ transform: translateY(-2px); box-shadow: 0 12px 26px -8px rgba(157,92,255,.8); }
+
+.menu-btn{
+  display:none; background:none; border:none; cursor:pointer;
+  width: 40px; height: 40px; flex-direction:column; align-items:center; justify-content:center; gap:5px;
+}
+.menu-btn span{ width: 20px; height: 2px; background: var(--silver-bright); display:block; transition: transform .25s var(--ease), opacity .25s var(--ease); }
+.menu-btn[aria-expanded="true"] span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+.menu-btn[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.menu-btn[aria-expanded="true"] span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-nav{
+  display:none; flex-direction:column; border-top: 1px solid var(--line); background: var(--bg-elev);
+}
+.mobile-nav.open{ display:flex; }
+.mobile-nav a{ padding: 15px var(--edge); border-bottom: 1px solid var(--line); font-size:.92rem; }
+.mobile-nav a.active{ color: var(--purple-2); }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn{
+  font-size:.88rem; font-weight:600; padding: 14px 26px; border-radius: 30px;
+  display:inline-flex; align-items:center; gap:8px;
+  transition: transform .2s var(--ease-spring), box-shadow .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+}
+.btn-primary{
+  background: var(--grad-primary); color: var(--white);
+  box-shadow: 0 10px 26px -10px rgba(124,58,237,.7);
+}
+.btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 14px 32px -8px rgba(157,92,255,.85); }
+.btn-ghost{
+  border: 1.5px solid var(--line-strong); color: var(--silver-bright); background: rgba(255,255,255,.02);
+}
+.btn-ghost:hover{ border-color: var(--purple-2); color:var(--white); background: rgba(157,92,255,.08); }
+
+/* ============================================================
+   PAGE HEADER (non-home pages)
+   ============================================================ */
+.page-header{ padding: 160px 0 70px; }
+.eyebrow{
+  font-family: var(--font-mono); font-size:.75rem; letter-spacing:.12em; text-transform: uppercase;
+  color: var(--purple-2); margin: 0 0 16px; display:flex; align-items:center; gap:10px;
+}
+.eyebrow::before{ content:""; width:22px; height:1px; background: var(--purple-2); display:inline-block; }
+.page-title{ font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight:600; }
+.page-lede{ max-width: 60ch; font-size: 1.1rem; margin-top:16px; }
+
+/* ============================================================
+   HERO (home)
+   ============================================================ */
+.hero{ padding: 150px 0 90px; position:relative; }
+.hero-grid{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items:center; }
+.hero-title{
+  font-size: clamp(2.9rem, 6.4vw, 5rem); line-height: 1.02; font-weight:700;
+}
+.hero-title .line{ display:block; opacity:0; transform: translateY(24px); animation: rise .85s var(--ease) forwards; }
+.hero-title .line:nth-child(2){ animation-delay:.12s; }
+.hero-title .grad{
+  background: var(--grad-text); background-size: 220% 100%;
+  -webkit-background-clip: text; background-clip:text; color:transparent;
+  animation: rise .85s var(--ease) forwards, shine 7s linear infinite 1s;
+}
+@keyframes rise{ to{ opacity:1; transform:none; } }
+@keyframes shine{ to{ background-position: -220% 0; } }
+
+.hero-role{ font-size:1.2rem; font-weight:600; color: var(--silver-bright); margin: 22px 0 12px; }
+.hero-role span{ color: var(--ink-soft); font-weight:400; }
+.hero-desc{ max-width: 48ch; font-size: 1.04rem; }
+.hero-actions{ display:flex; gap:14px; margin: 28px 0 44px; flex-wrap:wrap; }
+
+.stat-row{ display:flex; gap: 42px; flex-wrap:wrap; padding-top: 26px; border-top: 1px solid var(--line); }
+.stat b{
+  display:block; font-family: var(--font-display); font-size: 2rem; font-weight:700;
+  background: var(--grad-primary); -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.stat span{ font-size:.8rem; color: var(--ink-soft); text-transform:uppercase; letter-spacing:.05em; }
+
+.hero-figure{ display:flex; justify-content:center; position:relative; }
+.orb-frame{ position: relative; width: 280px; height:280px; }
+.orb-ring{
+  position:absolute; inset:-18px; border-radius:50%;
+  background: conic-gradient(from 0deg, var(--purple), var(--silver), var(--purple-2), var(--purple));
+  animation: spin 14s linear infinite; padding: 3px;
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+          mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+}
+@keyframes spin{ to{ transform: rotate(360deg); } }
+.orb-frame img{
+  width:100%; height:100%; object-fit:cover; border-radius:50%;
+  border: 4px solid var(--bg); position:relative; z-index:1;
+  box-shadow: 0 20px 60px -18px rgba(124,58,237,.55);
+}
+.orb-badge{
+  position:absolute; bottom:6px; right:0; z-index:2;
+  background: var(--bg-elev-2); border: 1px solid var(--line-strong);
+  border-radius: 30px; padding: 9px 16px; display:flex; align-items:center; gap:8px;
+  font-family: var(--font-mono); font-size:.72rem; color: var(--silver-bright);
+  box-shadow: 0 10px 26px -10px rgba(0,0,0,.5);
+  animation: float 4.5s ease-in-out infinite;
+}
+.orb-badge .dot{ width:7px; height:7px; border-radius:50%; background: #34D399; box-shadow: 0 0 8px #34D399; }
+@keyframes float{ 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-8px);} }
+
+/* ============================================================
+   GLASS CARDS / SECTIONS
+   ============================================================ */
+.section{ padding: 100px 0; position: relative; }
+.section-head{ max-width: 640px; margin-bottom: 54px; }
+.section-head h2{ font-size: clamp(1.8rem,3.4vw,2.5rem); margin-top:10px; }
+
+.card-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.glass-card{
+  background: linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
+  border: 1px solid var(--line); border-radius: 18px; padding: 30px 26px;
+  transition: transform .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
+  opacity:0; transform: translateY(22px);
+}
+.glass-card.in-view{ opacity:1; transform:none; transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.glass-card:hover{ transform: translateY(-6px); border-color: var(--line-strong); background: linear-gradient(160deg, rgba(157,92,255,.10), rgba(255,255,255,.02)); }
+.card-icon{
+  width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+  background: var(--grad-primary); margin-bottom: 18px; font-size:1.2rem;
+}
+.glass-card h3{ font-size:1.12rem; margin-bottom:8px; }
+.glass-card p{ font-size:.93rem; margin:0; }
+
+.reveal{ opacity:0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.reveal.in-view{ opacity:1; transform:none; }
+
+/* pillar links (home teaser) */
+.pillars{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 20px; }
+.pillar-link{
+  display:block; padding: 28px; border-radius: 18px; border: 1px solid var(--line);
+  background: rgba(255,255,255,.02); position:relative; overflow:hidden;
+  transition: transform .3s var(--ease), border-color .3s var(--ease);
+}
+.pillar-link:hover{ transform: translateY(-4px); border-color: var(--purple-2); }
+.pillar-link .pillar-no{ font-family: var(--font-mono); font-size:.72rem; color: var(--purple-2); }
+.pillar-link h3{ margin: 14px 0 8px; font-size:1.2rem; }
+.pillar-link p{ font-size:.88rem; margin:0; }
+.pillar-arrow{ position:absolute; top:26px; right:24px; color: var(--ink-soft); transition: transform .3s var(--ease), color .3s var(--ease); }
+.pillar-link:hover .pillar-arrow{ transform: translate(3px,-3px); color: var(--purple-2); }
+
+/* ============================================================
+   TIMELINE (experience page) — signature element
+   ============================================================ */
+.timeline{ position:relative; margin-top: 44px; padding-left: 40px; }
+.timeline::before{
+  content:""; position:absolute; left: 9px; top: 8px; bottom: 8px; width: 2px;
+  background: linear-gradient(180deg, var(--purple-2), var(--silver) 55%, var(--purple));
+  opacity:.45; border-radius: 2px;
+}
+.timeline-item{ position:relative; padding-bottom: 54px; }
+.timeline-item:last-child{ padding-bottom:0; }
+.timeline-dot{
+  position:absolute; left: -40px; top: 6px; width: 18px; height:18px; border-radius:50%;
+  background: var(--bg-elev-2); border: 2px solid var(--purple-2);
+  box-shadow: 0 0 0 5px rgba(157,92,255,.14);
+}
+.timeline-date{
+  font-family: var(--font-mono); font-size:.78rem; letter-spacing:.03em; color: var(--purple-2);
+  margin-bottom: 10px; display:block;
+}
+.timeline-card{
+  border: 1px solid var(--line); border-radius: 16px; padding: 28px;
+  background: rgba(255,255,255,.02);
+  transition: border-color .3s var(--ease), transform .3s var(--ease), background .3s var(--ease);
+}
+.timeline-card:hover{ border-color: var(--line-strong); transform: translateX(4px); background: rgba(157,92,255,.045); }
+.timeline-role{ font-family: var(--font-display); font-size:1.2rem; font-weight:600; color: var(--silver-bright); display:block; }
+.timeline-org{ font-size:.85rem; color: var(--ink-soft); margin-top:4px; display:block; }
+.timeline-org a{ color: var(--purple-2); font-weight:500; transition: color .2s var(--ease); }
+.timeline-org a:hover{ color: var(--silver-bright); text-decoration: underline; }
+
+/* Reusable: qualification/role title big, institute icon + clickable link below */
+.org-row{ display:flex; align-items:center; gap:10px; margin: 12px 0 6px; flex-wrap:wrap; }
+.org-icon{
+  width:32px; height:32px; border-radius:9px; background: var(--grad-primary);
+  display:flex; align-items:center; justify-content:center; font-size:.92rem; flex-shrink:0;
+}
+.org-link{ color: var(--purple-2); font-weight:600; font-size:.95rem; transition: color .2s var(--ease); }
+.org-link:hover{ color: var(--silver-bright); text-decoration: underline; }
+.org-meta{ font-size:.82rem; color: var(--ink-soft); }
+
+.timeline-desc{ margin-top:14px; font-size:.94rem; color: var(--silver); }
+.timeline-note{
+  font-size:.86rem; margin-top: 14px; padding: 14px 16px; border-radius: 12px;
+  background: rgba(157,92,255,.06); border: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+.timeline-note a{ color: var(--purple-2); font-weight:600; white-space:nowrap; }
+.timeline-note a:hover{ text-decoration: underline; }
+.timeline-chips{ display:flex; flex-wrap:wrap; gap:7px; margin-top: 16px; }
+
+.chip{
+  font-family: var(--font-mono); font-size:.7rem; border: 1px solid var(--line-strong); color: var(--silver-bright);
+  padding: 5px 10px; border-radius: 20px; height: fit-content; background: rgba(255,255,255,.03);
+  transition: border-color .25s var(--ease), color .25s var(--ease);
+}
+.timeline-card:hover .chip{ border-color: var(--purple-2); }
+
+/* ============================================================
+   EDUCATION — path stepper + cert cards
+   ============================================================ */
+.path-stepper{
+  display:flex; align-items:flex-start; gap:0; margin: 54px 0 70px; overflow-x:auto; padding-bottom: 10px;
+}
+.step{ display:flex; flex-direction:column; align-items:center; min-width: 150px; position:relative; flex:1; }
+.step-dot{
+  width:16px; height:16px; border-radius:50%; background: var(--bg-elev-2); border: 2px solid var(--line-strong);
+  margin-bottom: 14px; position:relative; z-index:1; transition: background .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
+}
+.step.done .step-dot{ background: var(--grad-primary); border-color: transparent; box-shadow: 0 0 0 4px rgba(124,58,237,.18); }
+.step.current .step-dot{ background: var(--grad-primary); border-color: transparent; box-shadow: 0 0 0 6px rgba(157,92,255,.22); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse{ 0%,100%{ box-shadow: 0 0 0 6px rgba(157,92,255,.22);} 50%{ box-shadow: 0 0 0 10px rgba(157,92,255,.08);} }
+.step::before{
+  content:""; position:absolute; top:7px; left:-50%; width:100%; height:2px; background: var(--line-strong); z-index:0;
+}
+.step:first-child::before{ display:none; }
+.step.done::before{ background: linear-gradient(90deg, var(--purple), var(--purple-2)); }
+.step-label{ font-size:.82rem; font-weight:600; text-align:center; color: var(--silver-bright); }
+.step-sub{ font-size:.72rem; color: var(--ink-soft); text-align:center; margin-top:2px; }
+
+.here-tag{
+  position:absolute; top:-42px; left:50%; transform: translateX(-50%);
+  background: var(--grad-primary); color: var(--white); font-family: var(--font-mono);
+  font-size:.66rem; font-weight:600; letter-spacing:.03em; padding: 6px 12px; border-radius: 20px;
+  white-space:nowrap; box-shadow: 0 8px 18px -8px rgba(124,58,237,.7); z-index:2;
+  animation: bob 2.2s ease-in-out infinite;
+}
+.here-tag::after{
+  content:""; position:absolute; left:50%; bottom:-5px; transform: translateX(-50%);
+  width:0; height:0; border-left:5px solid transparent; border-right:5px solid transparent;
+  border-top: 6px solid var(--purple-2);
+}
+@keyframes bob{ 0%,100%{ transform: translateX(-50%) translateY(0);} 50%{ transform: translateX(-50%) translateY(-4px);} }
+
+.cert-card{
+  padding: 30px; border: 1px solid var(--line); border-radius: 18px; margin-bottom: 20px;
+  background: rgba(255,255,255,.02);
+  transition: border-color .3s var(--ease), transform .3s var(--ease);
+}
+.cert-card:hover{ border-color: var(--line-strong); transform: translateY(-3px); }
+.cert-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:10px; }
+.cert-tag{
+  font-family: var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.05em;
+  color: var(--purple-2); border:1px solid var(--purple-2); padding: 4px 10px; border-radius: 20px;
+}
+.cert-tag-done{ color: #34D399; border-color: #34D399; }
+.cert-date{ font-family: var(--font-mono); font-size:.78rem; color: var(--ink-soft); }
+.cert-card h3{ font-size: 1.4rem; margin-bottom:4px; color: var(--silver-bright); }
+.cert-card h3 a{ color: var(--silver-bright); transition: color .2s var(--ease); border-bottom: 1px solid transparent; }
+.cert-card h3 a:hover{ color: var(--purple-2); border-bottom-color: var(--purple-2); }
+.cert-affil{ font-weight:400; color: var(--ink-soft); font-size: .82em; }
+.cert-sub{ font-weight:500; color: var(--purple-2); margin-bottom:10px; }
+.cert-desc{ max-width: 60ch; }
+.cert-activities{ font-family: var(--font-mono); font-size:.8rem; color: var(--ink-soft); margin:0; }
+
+/* ============================================================
+   SKILLS
+   ============================================================ */
+.skills-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.skill-col{
+  border: 1px solid var(--line); border-radius: 18px; padding: 26px; background: rgba(255,255,255,.02);
+}
+.skill-col h3{
+  font-size: .82rem; font-family: var(--font-mono); text-transform:uppercase; letter-spacing:.06em;
+  color: var(--purple-2); margin-bottom: 18px; display:flex; align-items:center; gap:8px;
+}
+.skill-col h3::before{ content:""; width:8px; height:8px; border-radius:2px; background: var(--grad-primary); display:inline-block; }
+.chip-list{ display:flex; flex-direction:column; gap:0; }
+.chip-list li{
+  font-size:.94rem; color: var(--silver-bright); padding: 12px 0; border-bottom: 1px solid var(--line);
+  display:flex; align-items:center; gap:10px;
+}
+.chip-list li:last-child{ border-bottom:none; }
+.chip-list li::before{ content:"—"; color: var(--purple-2); font-family: var(--font-mono); }
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 10px; }
+.contact-item{
+  padding: 28px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.02);
+  display:flex; flex-direction:column; gap:8px; transition: border-color .3s var(--ease), transform .3s var(--ease), background .3s var(--ease);
+}
+a.contact-item:hover{ border-color: var(--purple-2); transform: translateY(-3px); background: rgba(157,92,255,.06); }
+.contact-icon{
+  width:38px; height:38px; border-radius:10px; background: var(--grad-primary);
+  display:flex; align-items:center; justify-content:center; margin-bottom:6px; font-size:1rem;
+}
+.contact-label{ font-family: var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; color: var(--ink-soft); }
+.contact-value{ font-size: 1.06rem; font-weight:600; color: var(--silver-bright); }
+
+.contact-linkedin{
+  display:flex; align-items:center; gap:22px; padding: 40px; border-radius: 22px;
+  background: linear-gradient(135deg, rgba(124,58,237,.18), rgba(76,29,149,.10));
+  border: 1px solid var(--line-strong); transition: transform .3s var(--ease-spring), box-shadow .3s var(--ease);
+}
+.contact-linkedin:hover{ transform: translateY(-4px); box-shadow: 0 20px 44px -20px rgba(124,58,237,.6); }
+.contact-linkedin-icon{
+  width:64px; height:64px; border-radius: 16px; background: var(--grad-primary);
+  display:flex; align-items:center; justify-content:center; font-family: var(--font-display);
+  font-weight:700; font-size:1.5rem; color: var(--white); flex-shrink:0;
+  box-shadow: 0 10px 26px -10px rgba(124,58,237,.7);
+}
+.contact-linkedin-copy{ flex:1; }
+.contact-linkedin-copy .contact-label{ margin-bottom:4px; }
+.contact-linkedin-copy h3{ font-size:1.3rem; margin-bottom:6px; }
+.contact-linkedin-copy p{ margin:0; font-size:.92rem; }
+.contact-linkedin-arrow{ font-size:1.6rem; color: var(--purple-2); flex-shrink:0; transition: transform .3s var(--ease); }
+.contact-linkedin:hover .contact-linkedin-arrow{ transform: translate(4px,-4px); }
+
+.contact-location{
+  margin-top: 18px; display:flex; align-items:center; gap:12px;
+  padding: 20px 24px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.015);
+}
+.contact-location .contact-icon{ margin-bottom:0; width:34px; height:34px; font-size:.9rem; }
+
+.cta-band{
+  margin-top: 90px; padding: 56px; border-radius: 24px; text-align:center;
+  background: linear-gradient(135deg, rgba(124,58,237,.18), rgba(76,29,149,.12));
+  border: 1px solid var(--line-strong);
+}
+.cta-band h2{ font-size: clamp(1.7rem,3.4vw,2.4rem); margin-bottom:14px; }
+.cta-band p{ max-width: 52ch; margin: 0 auto 26px; }
+
+/* ============================================================
+   PARTICLE BACKGROUND
+   ============================================================ */
+#particles{ position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.7; }
+
+/* ============================================================
+   ENGAGEMENTS (projects)
+   ============================================================ */
+.projects-toolbar{ margin: 8px 0 40px; }
+.search-field{ position:relative; max-width: 420px; }
+.search-field input{
+  width:100%; padding: 14px 18px 14px 44px; border-radius: 30px; border: 1px solid var(--line-strong);
+  background: rgba(255,255,255,.03); color: var(--white); font-family: var(--font-body); font-size:.94rem;
+  transition: border-color .25s var(--ease), background .25s var(--ease);
+}
+.search-field input::placeholder{ color: var(--ink-soft); }
+.search-field input:focus{ outline:none; border-color: var(--purple-2); background: rgba(157,92,255,.06); }
+.search-field::before{
+  content: "⚲"; position:absolute; left:18px; top:50%; transform: translateY(-50%) scaleX(-1);
+  color: var(--ink-soft); font-size:.95rem; pointer-events:none;
+}
+
+.projects-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 20px; }
+
+.project-card{
+  text-align:left; cursor:pointer; border: 1px solid var(--line); border-radius: 18px; padding: 26px;
+  background: rgba(255,255,255,.02); color: inherit; width:100%;
+  transition: transform .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
+  display:flex; flex-direction:column;
+}
+.project-card:hover{ transform: translateY(-5px); border-color: var(--purple-2); background: rgba(157,92,255,.06); }
+.project-card-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+.project-type{
+  font-family: var(--font-mono); font-size:.66rem; text-transform:uppercase; letter-spacing:.06em;
+  color: var(--purple-2); border: 1px solid var(--purple-2); padding: 3px 9px; border-radius: 20px;
+}
+.project-date{ font-family: var(--font-mono); font-size:.74rem; color: var(--ink-soft); }
+.project-card h3{ font-size: 1.1rem; margin-bottom:8px; color: var(--silver-bright); }
+.project-card p{ font-size:.88rem; margin:0 0 16px; flex:1; }
+.project-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom: 16px; }
+.project-open{
+  font-family: var(--font-mono); font-size:.78rem; color: var(--purple-2); display:flex; align-items:center; gap:6px;
+  transition: gap .25s var(--ease);
+}
+.project-card:hover .project-open{ gap:10px; }
+
+.project-empty{
+  grid-column: 1 / -1; text-align:center; padding: 70px 30px; border: 1.5px dashed var(--line-strong);
+  border-radius: 20px; background: rgba(255,255,255,.015);
+}
+.project-empty .empty-icon{
+  width:56px; height:56px; margin: 0 auto 20px; border-radius:16px; background: var(--grad-primary);
+  display:flex; align-items:center; justify-content:center; font-size:1.4rem; opacity:.9;
+}
+.project-empty h3{ font-size:1.2rem; margin-bottom:8px; color: var(--silver-bright); }
+.project-empty p{ max-width: 44ch; margin: 0 auto; }
+
+.project-skeleton{ cursor:default; pointer-events:none; }
+.skeleton-line{
+  height: 12px; border-radius: 6px; width: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,.05) 25%, rgba(255,255,255,.11) 37%, rgba(255,255,255,.05) 63%);
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.6s ease infinite;
+}
+.skeleton-w40{ width:40%; height:16px; }
+.skeleton-w60{ width:60%; margin-top:10px; }
+.skeleton-w80{ width:80%; }
+.skeleton-w100{ width:100%; }
+@keyframes skeleton-shimmer{
+  0%{ background-position: 100% 0; }
+  100%{ background-position: -100% 0; }
+}
+
+
+/* ============================================================
+   PROJECT DETAIL — README on the left, live preview on the right
+   Uses a wider container than the rest of the site (.wrap-wide instead
+   of .wrap) so more of the screen goes to actually viewing the project.
+   ============================================================ */
+.wrap-wide{ max-width: 1680px; margin: 0 auto; padding: 0 20px; }
+
+.project-detail-topbar{
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;
+  padding-top: 118px; padding-bottom: 22px;
+}
+.back-link{
+  font-size:.88rem; color: var(--ink-soft); display:inline-flex; align-items:center; gap:6px;
+  transition: color .2s var(--ease);
+}
+.back-link:hover{ color: var(--silver-bright); }
+.btn-sm{ padding: 9px 18px; font-size:.8rem; }
+
+.project-detail-header{ padding-bottom: 26px; }
+.project-detail-header h1{ font-size: clamp(1.8rem, 3.6vw, 2.6rem); margin-bottom:10px; }
+.project-detail-header p{ font-size:1.02rem; max-width: 70ch; margin:0; }
+
+.project-detail-grid{
+  display:grid; grid-template-columns: minmax(300px, 35%) 1fr; gap: 20px; align-items:start; padding-bottom: 50px;
+}
+.project-detail-readme{
+  border: 1px solid var(--line); border-radius: 18px; padding: 26px; background: rgba(255,255,255,.02);
+  height: calc(100vh - 260px); min-height: 520px; overflow-y: auto;
+}
+.project-detail-preview{
+  border: 1px solid var(--line); border-radius: 18px; overflow:hidden; background: rgba(255,255,255,.02);
+  height: calc(100vh - 260px); min-height: 520px; display:flex; flex-direction:column;
+}
+.file-picker-bar{
+  display:flex; align-items:center; gap:10px; padding:14px 18px; flex-shrink:0;
+  border-bottom:1px solid var(--line); background: rgba(255,255,255,.02);
+}
+.file-picker-bar label{
+  font-family: var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.06em;
+  color: var(--ink-soft); flex-shrink:0;
+}
+.file-picker-bar select{
+  flex:1; min-width:0; background: rgba(255,255,255,.05); border:1px solid var(--line-strong);
+  color: var(--white); padding:8px 12px; border-radius:8px; font-family: var(--font-mono);
+  font-size:.8rem; cursor:pointer;
+}
+.file-picker-bar select:focus{ outline:none; border-color: var(--purple-2); }
+
+.preview-content{ flex:1; overflow:auto; display:flex; flex-direction:column; min-height:0; }
+.project-detail-frame{ width:100%; height:100%; border:0; background:#fff; flex:1; }
+.project-detail-empty{
+  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding: 40px; gap: 12px;
+}
+.project-detail-empty .empty-icon{
+  width:52px; height:52px; border-radius:14px; background: var(--grad-primary);
+  display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin-bottom:4px;
+}
+.project-detail-empty h3{ font-size:1.1rem; color: var(--silver-bright); }
+.project-detail-empty p{ font-size:.9rem; max-width:32ch; margin:0; }
+
+/* Spreadsheet preview (SheetJS renders a plain <table>, we style it) */
+.sheet-controls{
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;
+  gap:8px; padding:10px 14px 0; flex-shrink:0;
+}
+.sheet-tabs{ display:flex; gap:4px; flex-wrap:wrap; }
+.sheet-tab{
+  font-family: var(--font-mono); font-size:.72rem; padding:6px 12px; border-radius:8px 8px 0 0;
+  background: rgba(255,255,255,.03); border:1px solid var(--line); border-bottom:none;
+  color: var(--ink-soft); cursor:pointer; transition: color .2s var(--ease), background .2s var(--ease);
+}
+.sheet-tab:hover{ color: var(--silver-bright); }
+.sheet-tab.active{ background: rgba(157,92,255,.12); color: var(--silver-bright); border-color: var(--purple-2); }
+
+.view-tabs{ display:flex; gap:4px; margin-left:auto; }
+.view-tab{
+  font-family: var(--font-mono); font-size:.72rem; padding:6px 12px; border-radius:20px;
+  background: rgba(255,255,255,.03); border:1px solid var(--line-strong); color: var(--ink-soft);
+  cursor:pointer; transition: color .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+}
+.view-tab:hover{ color: var(--silver-bright); }
+.view-tab.active{ background: rgba(157,92,255,.14); color: var(--silver-bright); border-color: var(--purple-2); }
+
+.sheet-view-area{ flex:1; display:flex; flex-direction:column; min-height:0; }
+.chart-wrap{ flex:1; padding:20px; position:relative; min-height:0; }
+
+.spreadsheet-scroll{ overflow:auto; flex:1; padding:4px; }
+.spreadsheet-scroll table{ border-collapse:collapse; width:100%; font-size:.8rem; font-family: var(--font-mono); }
+.spreadsheet-scroll td{ border:1px solid var(--line); padding:6px 10px; color: var(--silver); white-space:nowrap; }
+.spreadsheet-scroll tr:first-child td{ background: rgba(157,92,255,.14); font-weight:600; color: var(--silver-bright); }
+
+/* Code / plain-text file preview */
+.code-preview{
+  flex:1; margin:0; padding:20px; overflow:auto; background:transparent;
+  font-family: var(--font-mono); font-size:.8rem; color: var(--silver); line-height:1.6; white-space:pre;
+}
+
+/* Image file preview */
+.image-preview-wrap{ flex:1; display:flex; align-items:center; justify-content:center; padding:20px; overflow:auto; }
+.image-preview-wrap img{ max-width:100%; max-height:100%; border-radius:8px; }
+
+.readme-empty{ color: var(--ink-soft); font-size:.92rem; }
+
+.readme-body h1, .readme-body h2, .readme-body h3, .readme-body h4{
+  font-family: var(--font-display); color: var(--silver-bright); margin: 24px 0 10px; line-height:1.3;
+}
+.readme-body h1:first-child, .readme-body h2:first-child, .readme-body h3:first-child{ margin-top:0; }
+.readme-body h1{ font-size:1.5rem; }
+.readme-body h2{ font-size:1.22rem; }
+.readme-body h3{ font-size:1.05rem; }
+.readme-body p{ margin:0 0 14px; font-size:.92rem; color: var(--silver); line-height:1.7; }
+.readme-body a{ color: var(--purple-2); text-decoration: underline; text-underline-offset:2px; }
+.readme-body ul, .readme-body ol{ margin:0 0 14px 22px; color: var(--silver); font-size:.92rem; }
+.readme-body li{ margin-bottom:6px; line-height:1.6; }
+.readme-body code{
+  background: rgba(255,255,255,.07); padding:2px 6px; border-radius:4px;
+  font-family: var(--font-mono); font-size:.85em; color: var(--silver-bright);
+}
+.readme-body pre{
+  background: rgba(255,255,255,.04); border:1px solid var(--line); padding:16px; border-radius:10px;
+  overflow-x:auto; margin:0 0 16px;
+}
+.readme-body pre code{ background:none; padding:0; }
+.readme-body img{ max-width:100%; border-radius:8px; margin:6px 0; }
+.readme-body blockquote{
+  border-left: 3px solid var(--purple-2); padding-left:14px; margin:0 0 14px; color: var(--ink-soft);
+}
+.readme-body table{ border-collapse:collapse; width:100%; margin:0 0 16px; font-size:.86rem; }
+.readme-body th, .readme-body td{ border:1px solid var(--line); padding:8px 12px; text-align:left; }
+.readme-body hr{ border:none; border-top:1px solid var(--line); margin:22px 0; }
+
+@media (max-width: 900px){
+  .wrap-wide{ padding: 0 var(--edge); }
+  .project-detail-topbar{ padding-top: 100px; }
+  .project-detail-grid{ grid-template-columns: 1fr; }
+  .project-detail-readme{ height: 420px; min-height: 0; }
+  .project-detail-preview{ height: 480px; min-height: 0; }
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{ border-top: 1px solid var(--line); padding: 34px 0 60px; margin-top: 40px; }
+.footer-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+.footer-row p{ margin:0; font-size:.82rem; }
+.footer-links{ display:flex; gap: 22px; }
+.footer-links a{ font-size:.82rem; color: var(--ink-soft); transition: color .2s var(--ease); }
+.footer-links a:hover{ color: var(--purple-2); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px){
+  .tabs, .nav-cta{ display:none; }
+  .menu-btn{ display:flex; }
+  .hero-grid{ grid-template-columns: 1fr; }
+  .hero-figure{ order:-1; margin-bottom: 10px; }
+  .orb-frame{ width:200px; height:200px; }
+  .card-grid, .pillars{ grid-template-columns: 1fr; }
+  .timeline{ padding-left: 30px; }
+  .timeline-dot{ left:-30px; }
+  .timeline-card{ padding: 22px; }
+  .skills-grid{ grid-template-columns: 1fr; }
+  .contact-grid{ grid-template-columns: 1fr; }
+  .contact-linkedin{ flex-direction:column; text-align:center; padding: 30px; }
+  .contact-linkedin-arrow{ display:none; }
+  .path-stepper{ flex-direction:column; align-items:flex-start; gap: 30px; margin-top: 20px; }
+  .step{ flex-direction:row; align-items:center; min-width:0; }
+  .step-dot{ margin-bottom:0; margin-right:14px; }
+  .step::before{ display:none; }
+  .step-label, .step-sub{ text-align:left; }
+  .here-tag{
+    position:static; transform:none; display:inline-flex; margin-left:12px;
+    animation: none;
+  }
+  .here-tag::after{ display:none; }
+  .cta-band{ padding: 36px 24px; }
+  .projects-grid{ grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px){
+  .hero-title{ font-size: 2.4rem; }
+  .hero-actions{ flex-direction:column; }
+  .btn{ justify-content:center; }
+  .stat-row{ gap: 26px; }
+}
+
+
+</style>
+</head>
+<body>
+<canvas id="particles" aria-hidden="true"></canvas>
+<div class="progress-bar" id="progressBar"></div>
+<div class="mesh" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<header class="site-header" id="top">
+  <div class="wrap header-row">
+    <a class="brand" href="#home">
+      <span class="brand-mark">EN</span>
+      <span class="brand-name">Emily Naidoo</span>
+    </a>
+    <nav class="tabs" aria-label="Section navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#engagements">Accounting Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Let's talk</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#engagements">Accounting Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+
+<div class="page" id="page-home">
+<main>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Portfolio &middot; Chartered Accountancy Candidate</p>
+      <h1 class="hero-title">
+        <span class="line">Emily</span>
+        <span class="line grad">Naidoo</span>
+      </h1>
+      <p class="hero-role">Aspiring Chartered Accountant <span>&mdash; CA(SA) candidate, Bachelor of Accounting</span></p>
+      <p class="hero-desc">
+        Second-year accounting student at Emeris, Johannesburg, building the
+        discipline and precision of a chartered accountant &mdash; one balanced set of
+        books at a time. Currently seeking vacation work and SAICA training contract
+        opportunities.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Get in touch</a>
+        <a class="btn btn-ghost" href="assets/Emily_Naidoo_CV.pdf" download>Download CV &darr;</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><b data-count="3">0</b><span>Roles held</span></div>
+        <div class="stat"><b data-count="3">0</b><span>Years experience</span></div>
+        <div class="stat"><b data-count="2027">0</b><span>Graduating</span></div>
+      </div>
+    </div>
+    <div class="hero-figure">
+      <div class="orb-frame">
+        <div class="orb-ring"></div>
+        <img src="https://avatars.githubusercontent.com/Emily-Michael-Naidoo?s=480" alt="Portrait of Emily Naidoo" width="280" height="280" onerror="this.onerror=null;this.src='assets/emily.png';">
+        <span class="orb-badge"><span class="dot"></span> Open to work</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">What I bring</p>
+      <h2>Detail-first, numbers-fluent, people-friendly</h2>
+    </div>
+    <div class="card-grid">
+      <div class="glass-card">
+        <div class="card-icon">&#128202;</div>
+        <h3>Financial precision</h3>
+        <p>Hands-on with bookkeeping, reconciliations, budgeting and financial reporting &mdash; the fundamentals a CA(SA) is built on.</p>
+      </div>
+      <div class="glass-card">
+        <div class="card-icon">&#128172;</div>
+        <h3>Clear communication</h3>
+        <p>Experience tutoring accounting concepts to fellow students &mdash; turning dense material into something people actually understand.</p>
+      </div>
+      <div class="glass-card">
+        <div class="card-icon">&#9878;</div>
+        <h3>Trustworthy under pressure</h3>
+        <p>Coordinated finance, admin and SARS-facing documentation for a foundation, and ran the numbers for a small manufacturing business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Explore</p>
+      <h2>The full picture</h2>
+    </div>
+    <div class="pillars">
+      <a class="pillar-link reveal" href="#experience">
+        <span class="pillar-no">01</span>
+        <span class="pillar-arrow">&#8599;</span>
+        <h3>Experience</h3>
+        <p>A timeline of every role &mdash; responsibilities and skills gained.</p>
+      </a>
+      <a class="pillar-link reveal" href="#education">
+        <span class="pillar-no">02</span>
+        <span class="pillar-arrow">&#8599;</span>
+        <h3>Education</h3>
+        <p>The path to CA(SA), from high school accounting to a Bachelor of Accounting.</p>
+      </a>
+      <a class="pillar-link reveal" href="#skills">
+        <span class="pillar-no">03</span>
+        <span class="pillar-arrow">&#8599;</span>
+        <h3>Skills</h3>
+        <p>Core, technical and software skills, grouped and ready to scan.</p>
+      </a>
+      <a class="pillar-link reveal" href="#engagements">
+        <span class="pillar-no">04</span>
+        <span class="pillar-arrow">&#8599;</span>
+        <h3>Accounting Projects</h3>
+        <p>Completed projects and analyses &mdash; more added as they're finished.</p>
+      </a>
+    </div>
+
+    <div class="cta-band reveal">
+      <h2>Looking for a diligent addition to your team?</h2>
+      <p>Open to vacation work, internships and SAICA training contracts &mdash; I'd love to hear from you.</p>
+      <a class="btn btn-primary" href="#contact">Contact me</a>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<div class="page" id="page-about" hidden>
+<main>
+
+<section class="page-header">
+  <div class="wrap">
+    <p class="eyebrow">About</p>
+    <h1 class="page-title">Notes to the accounts</h1>
+    <p class="page-lede">The story behind the numbers &mdash; who I am, what drives me, and how I've spent the years leading up to my CA(SA) journey.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="card-grid" style="grid-template-columns: .8fr 1.2fr; align-items:start; gap:48px;">
+      <div class="reveal">
+        <div class="orb-frame" style="width:100%; height:auto; aspect-ratio:1/1; max-width:320px;">
+          <div class="orb-ring"></div>
+          <img src="https://avatars.githubusercontent.com/Emily-Michael-Naidoo?s=480" alt="Portrait of Emily Naidoo" onerror="this.onerror=null;this.src='assets/emily.png';">
+        </div>
+      </div>
+      <div class="reveal">
+        <p style="font-size:1.1rem; color:var(--silver-bright);">
+          I'm a dedicated and ambitious accounting student working toward becoming a
+          Chartered Accountant (SA). My passion for the discipline started in high school,
+          where strong marks in accounting laid the foundation for the path I'm on now.
+        </p>
+        <p>
+          I'm highly motivated, detail-oriented, and committed to mastering the principles
+          of accounting and finance &mdash; not just for exams, but for the kind of judgement the
+          profession asks of you. Outside the classroom, I've coordinated finance and
+          administration for a foundation, tutored fellow students through difficult
+          accounting concepts, and helped run the books for a small manufacturing business.
+          Each has sharpened a different part of the same instinct: make the numbers tell
+          the truth, clearly.
+        </p>
+        <ul style="display:flex; flex-direction:column; gap:14px; margin-top:26px;">
+          <li style="display:flex; gap:12px; align-items:flex-start; color:var(--silver-bright); font-size:.98rem;">
+            <span style="color:var(--purple-2); font-family:var(--font-mono);">&#10003;</span>
+            Detail-oriented, deadline-driven, and comfortable with SARS-facing documentation
+          </li>
+          <li style="display:flex; gap:12px; align-items:flex-start; color:var(--silver-bright); font-size:.98rem;">
+            <span style="color:var(--purple-2); font-family:var(--font-mono);">&#10003;</span>
+            Experienced explaining complex accounting concepts in plain terms
+          </li>
+          <li style="display:flex; gap:12px; align-items:flex-start; color:var(--silver-bright); font-size:.98rem;">
+            <span style="color:var(--purple-2); font-family:var(--font-mono);">&#10003;</span>
+            Hands-on with budgeting, reconciliations and financial reporting
+          </li>
+        </ul>
+        <div class="hero-actions" style="margin-top:32px;">
+          <a class="btn btn-primary" href="#experience">See my experience</a>
+          <a class="btn btn-ghost" href="assets/Emily_Naidoo_CV.pdf" download>Download CV &darr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<div class="page" id="page-experience" hidden>
+<main>
+
+<section class="page-header">
+  <div class="wrap">
+    <p class="eyebrow">Experience</p>
+    <h1 class="page-title">Career timeline</h1>
+    <p class="page-lede">Every role, in order. What it involved, and what it taught me.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="timeline">
+
+      <article class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <span class="timeline-date">May 2025 &mdash; Present</span>
+        <div class="timeline-card">
+          <span class="timeline-role">Coordinator</span>
+          <div class="org-row">
+            <span class="org-icon">&#129309;</span>
+            <a class="org-link" href="https://legacyfoundation.org.za/" target="_blank" rel="noopener">Legacy Foundation</a>
+            <span class="org-meta">&middot; Part-time, Hybrid</span>
+          </div>
+          <p class="timeline-desc">
+            Administration, finance and project coordination for the Foundation &mdash;
+            filing systems, bookkeeping, budgeting, SARS reporting, fundraising and
+            stakeholder engagement.
+          </p>
+          <p class="timeline-note">
+            Legacy Foundation is a volunteer-driven, Section 18A registered non-profit
+            empowering South African youth &mdash; 10 projects, 2,500+ volunteer hours and
+            3,500+ youth impacted to date.
+            <a href="https://legacyfoundation.org.za/" target="_blank" rel="noopener">Visit legacyfoundation.org.za &#8599;</a>
+          </p>
+          <div class="timeline-chips">
+            <span class="chip">Administration</span>
+            <span class="chip">Bookkeeping</span>
+            <span class="chip">Budgeting</span>
+            <span class="chip">SARS Reporting</span>
+            <span class="chip">Stakeholder Engagement</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <span class="timeline-date">Jan 2024 &mdash; Jan 2025</span>
+        <div class="timeline-card">
+          <span class="timeline-role">Tutor</span>
+          <span class="timeline-org">Self-employed &middot; Hybrid</span>
+          <p class="timeline-desc">
+            Taught foundational accounting to fellow students &mdash; designed lesson plans,
+            broke down complex topics, and reinforced core principles ahead of CA study.
+          </p>
+          <div class="timeline-chips">
+            <span class="chip">Accounting Fundamentals</span>
+            <span class="chip">Problem Solving</span>
+            <span class="chip">Communication</span>
+            <span class="chip">Lesson Planning</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <span class="timeline-date">Mar 2020 &mdash; Jul 2021</span>
+        <div class="timeline-card">
+          <span class="timeline-role">Manufacturer</span>
+          <span class="timeline-org">MikaraSoaps &middot; Freelance</span>
+          <p class="timeline-desc">
+            Ran the operational and financial side of a small soap-manufacturing business &mdash;
+            production costing, inventory management, pricing and expansion decisions.
+          </p>
+          <div class="timeline-chips">
+            <span class="chip">Production Costing</span>
+            <span class="chip">Inventory Management</span>
+            <span class="chip">Pricing Strategy</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<div class="page" id="page-education" hidden>
+<main>
+
+<section class="page-header">
+  <div class="wrap">
+    <p class="eyebrow">Education</p>
+    <h1 class="page-title">Path to CA(SA)</h1>
+    <p class="page-lede">From high school accounting to a chartered accountancy &mdash; the milestones so far, and what's still ahead.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="path-stepper reveal">
+      <div class="step done">
+        <div class="step-dot"></div>
+        <div class="step-label">High School</div>
+        <div class="step-sub">Northcliff High, 2023</div>
+      </div>
+      <div class="step current">
+        <div class="here-tag">I am here</div>
+        <div class="step-dot"></div>
+        <div class="step-label">Bachelor of Accounting</div>
+        <div class="step-sub">Emeris, 2024&ndash;2027</div>
+      </div>
+      <div class="step">
+        <div class="step-dot"></div>
+        <div class="step-label">Board Exams</div>
+        <div class="step-sub">SAICA ITC / APC</div>
+      </div>
+      <div class="step">
+        <div class="step-dot"></div>
+        <div class="step-label">Training Contract</div>
+        <div class="step-sub">SAICA-accredited firm</div>
+      </div>
+      <div class="step">
+        <div class="step-dot"></div>
+        <div class="step-label">CA(SA)</div>
+        <div class="step-sub">Qualified</div>
+      </div>
+    </div>
+
+    <div class="cert-card reveal">
+      <div class="cert-top">
+        <span class="cert-tag">In progress</span>
+        <span class="cert-date">2024 &mdash; Dec 2027</span>
+      </div>
+      <h3>Bachelor of Accounting</h3>
+      <div class="org-row">
+        <span class="org-icon">&#127891;</span>
+        <a class="org-link" href="https://www.emeris.ac.za/" target="_blank" rel="noopener">Emeris <span class="cert-affil">(Varsity College)</span></a>
+      </div>
+      <p class="cert-desc">A Bachelor of Accounting focused on Accounting and Finance, with
+        the SAICA-accredited pathway to Chartered Accountant (SA) as the goal beyond graduation.</p>
+    </div>
+
+    <div class="cert-card reveal">
+      <div class="cert-top">
+        <span class="cert-tag cert-tag-done">Completed</span>
+        <span class="cert-date">Jan 2019 &mdash; Dec 2023</span>
+      </div>
+      <h3>High School Diploma</h3>
+      <div class="org-row">
+        <span class="org-icon">&#127979;</span>
+        <a class="org-link" href="https://northcliffhigh.co.za/" target="_blank" rel="noopener">Northcliff High School</a>
+      </div>
+      <p class="cert-desc">Graduated with a Bachelor's Pass. Subjects included Accounting,
+        Mathematics, Physical Science, Biology, English and Afrikaans.</p>
+      <p class="cert-activities">Activities: Swimming &middot; Debs and Squires</p>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<div class="page" id="page-skills" hidden>
+<main>
+
+<section class="page-header">
+  <div class="wrap">
+    <p class="eyebrow">Skills</p>
+    <h1 class="page-title">Trial balance</h1>
+    <p class="page-lede">Core, technical and software skills built through study, tutoring and hands-on finance work.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="skills-grid">
+      <div class="skill-col reveal">
+        <h3>Core skills</h3>
+        <ul class="chip-list">
+          <li>Project Management</li>
+          <li>Problem-Solving</li>
+          <li>Time Management</li>
+          <li>Presentation Skills</li>
+          <li>Leadership</li>
+          <li>Team Collaboration</li>
+          <li>Communication</li>
+        </ul>
+      </div>
+      <div class="skill-col reveal">
+        <h3>Technical skills</h3>
+        <ul class="chip-list">
+          <li>Bookkeeping</li>
+          <li>Financial Record Keeping</li>
+          <li>Bank Reconciliations</li>
+          <li>Budget Preparation</li>
+          <li>Financial Reporting</li>
+          <li>Tax Administration</li>
+          <li>Financial Administration</li>
+        </ul>
+      </div>
+      <div class="skill-col reveal">
+        <h3>Software</h3>
+        <ul class="chip-list">
+          <li>Microsoft Excel</li>
+          <li>Microsoft Word</li>
+          <li>Microsoft PowerPoint</li>
+          <li>Google Sheets</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<div class="page" id="page-engagements" hidden>
+<main>
+
+<section class="page-header">
+  <div class="wrap">
+    <p class="eyebrow">Accounting Projects</p>
+    <h1 class="page-title">Accounting Projects</h1>
+    <p class="page-lede">Pulled live from GitHub &mdash; every public repository shows up here automatically as a project card.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="projects-toolbar reveal">
+      <div class="search-field">
+        <input type="search" id="projectSearch" placeholder="Search projects by title, description or language&hellip;" aria-label="Search accounting projects">
+      </div>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid"></div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<div class="page" id="page-contact" hidden>
+<main>
+
+<section class="page-header">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h1 class="page-title">Balance carried forward</h1>
+    <p class="page-lede">Looking for a diligent, detail-first addition to your team &mdash; for vacation work, a SAICA training contract, or anything in between? I'd love to hear from you.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <a class="contact-linkedin reveal" href="https://www.linkedin.com/in/e-m-naidoo/" target="_blank" rel="noopener">
+      <span class="contact-linkedin-icon">in</span>
+      <span class="contact-linkedin-copy">
+        <span class="contact-label">Best way to reach me</span>
+        <h3>Connect on LinkedIn</h3>
+        <p>/in/e-m-naidoo &mdash; send a message or connection request any time.</p>
+      </span>
+      <span class="contact-linkedin-arrow">&#8599;</span>
+    </a>
+
+    <div class="contact-location reveal">
+      <span class="contact-icon">&#128205;</span>
+      <span>
+        <span class="contact-label">Location</span><br>
+        <span class="contact-value">Johannesburg, South Africa</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<div class="page" id="page-project-detail" hidden>
+<main>
+  <div class="wrap-wide project-detail-topbar">
+    <a href="#engagements" class="back-link">&larr; Back to Accounting Projects</a>
+    <a id="projectDetailGithub" class="btn btn-ghost btn-sm" href="#" target="_blank" rel="noopener">View on GitHub &#8599;</a>
+  </div>
+  <div class="wrap-wide project-detail-header">
+    <h1 id="projectDetailTitle">Project</h1>
+    <p id="projectDetailDesc"></p>
+  </div>
+  <div class="wrap-wide project-detail-grid">
+    <div class="project-detail-readme" id="projectDetailReadme"></div>
+    <div class="project-detail-preview" id="projectDetailPreviewWrap">
+      <div class="file-picker-bar" id="filePickerBar" hidden>
+        <label for="projectFileSelect">Viewing</label>
+        <select id="projectFileSelect"></select>
+      </div>
+      <div class="preview-content" id="previewContent"></div>
+    </div>
+  </div>
+</main>
+</div>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>© <span class="js-year"></span> Emily Naidoo. Books balanced, references available on request.</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/e-m-naidoo/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script>
+
+// Footer year
+document.querySelectorAll('.js-year').forEach(el => el.textContent = new Date().getFullYear());
+
+// ---- Hash-based page router (keeps everything in one file) ----
+const PAGES = ['home','about','experience','education','skills','engagements','contact'];
+const TITLES = {
+  home: "Emily Naidoo — Aspiring Chartered Accountant",
+  about: "About — Emily Naidoo",
+  experience: "Experience — Emily Naidoo",
+  education: "Education — Emily Naidoo",
+  skills: "Skills — Emily Naidoo",
+  engagements: "Accounting Projects — Emily Naidoo",
+  contact: "Contact — Emily Naidoo"
+};
+
+function activatePage(id, opts) {
+  opts = opts || {};
+
+  if (id.indexOf('project/') === 0) {
+    const slug = decodeURIComponent(id.slice('project/'.length));
+    document.querySelectorAll('.page').forEach(p => { p.hidden = (p.id !== 'page-project-detail'); });
+    document.querySelectorAll('.tabs a, .mobile-nav a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#engagements');
+    });
+    if (!opts.skipScroll) window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+    showProjectDetail(slug);
+    return;
+  }
+
+  if (!PAGES.includes(id)) id = 'home';
+  document.querySelectorAll('.page').forEach(p => {
+    p.hidden = (p.id !== 'page-' + id);
+  });
+  document.querySelectorAll('.tabs a, .mobile-nav a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+  });
+  document.title = TITLES[id] || TITLES.home;
+  if (!opts.skipScroll) window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  const activeSection = document.getElementById('page-' + id);
+  if (activeSection) {
+    const targets = activeSection.querySelectorAll('.reveal, .glass-card, .timeline-item');
+    targets.forEach((el, i) => {
+      el.classList.remove('in-view');
+      void el.offsetWidth;
+      setTimeout(() => el.classList.add('in-view'), 60 + (i % 8) * 70);
+    });
+    if (id === 'home') runCounters(activeSection);
+    if (id === 'engagements') renderProjects();
+  }
+}
+
+function currentHash() {
+  return (location.hash || '#home').replace('#', '');
+}
+
+window.addEventListener('hashchange', () => activatePage(currentHash()));
+
+const menuBtn = document.getElementById('menuBtn');
+const mobileNav = document.getElementById('mobileNav');
+if (menuBtn && mobileNav) {
+  menuBtn.addEventListener('click', () => {
+    const open = mobileNav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+const progressBar = document.getElementById('progressBar');
+if (progressBar) {
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const denom = (h.scrollHeight - h.clientHeight) || 1;
+    const scrolled = (h.scrollTop) / denom * 100;
+    progressBar.style.width = Math.min(Math.max(scrolled, 0), 100) + '%';
+  }, { passive: true });
+}
+
+const revealTargets = document.querySelectorAll('.reveal, .glass-card, .timeline-item');
+if ('IntersectionObserver' in window && revealTargets.length) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealTargets.forEach(el => observer.observe(el));
+} else {
+  revealTargets.forEach(el => el.classList.add('in-view'));
+}
+
+function runCounters(scope) {
+  const counters = (scope || document).querySelectorAll('[data-count]');
+  counters.forEach(el => {
+    if (el.dataset.counted === '1') return;
+    el.dataset.counted = '1';
+    const target = parseFloat(el.getAttribute('data-count'));
+    const suffix = el.getAttribute('data-suffix') || '';
+    const duration = 1400;
+    const start = performance.now();
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = (target * eased);
+      el.textContent = (Number.isInteger(target) ? Math.round(value) : value.toFixed(1)) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+if ('IntersectionObserver' in window) {
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { runCounters(document); countObserver.disconnect(); }
+    });
+  }, { threshold: 0.5 });
+  const homeStats = document.querySelector('.stat-row');
+  if (homeStats) countObserver.observe(homeStats);
+}
+
+// ============================================================
+// ACCOUNTING PROJECTS — auto-detects repos on the GitHub account
+// ============================================================
+// HOW THIS WORKS
+// Nothing to edit in code, ever. Create a new public repo under the GitHub
+// account below and a card for it appears here automatically next time
+// someone loads the page — title comes from the repo name, description
+// from the repo's "About" field, and the card links to the repo's live
+// GitHub Pages site if it has one, otherwise to the repo itself on GitHub.
+//
+// This portfolio's own repo is automatically excluded from the list (see
+// EXCLUDE_REPO_NAMES below) so it doesn't show up as one of "her projects".
+const GITHUB_OWNER = 'Emily-Michael-Naidoo';   // GitHub account to pull repos from
+const GITHUB_REPO   = 'YOUR_REPO_NAME';        // <-- set to this portfolio's own repo name, so it's excluded from the list
+
+const EXCLUDE_FORKS = true;      // hide forked repos (not original work)
+const EXCLUDE_ARCHIVED = true;   // hide archived/retired repos
+
+const PROJECTS_CACHE_KEY = 'en_repos_cache_v1';
+const PROJECTS_CACHE_TTL = 10 * 60 * 1000; // 10 minutes
+
+let projectsState = null; // { items: [...], error: bool } — cached for this page session
+let projectsQuery = '';
+
+function excludedRepoNames() {
+  const names = new Set();
+  names.add(`${GITHUB_OWNER}.github.io`.toLowerCase());
+  names.add(GITHUB_OWNER.toLowerCase()); // GitHub's special profile-README repo
+  if (GITHUB_REPO && GITHUB_REPO !== 'YOUR_REPO_NAME') names.add(GITHUB_REPO.toLowerCase());
+  return names;
+}
+
+function repoNameToTitle(name) {
+  return name.replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim()
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function formatMonthYear(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d)) return '';
+  const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return monthNames[d.getMonth()] + ' ' + d.getFullYear();
+}
+
+function repoToProject(r) {
+  const liveUrl = (r.homepage && r.homepage.trim())
+    ? r.homepage.trim()
+    : (r.has_pages ? `https://${GITHUB_OWNER}.github.io/${r.name}/` : r.html_url);
+  return {
+    repoName: r.name,
+    defaultBranch: r.default_branch || 'main',
+    title: repoNameToTitle(r.name),
+    description: r.description || '',
+    url: liveUrl,
+    repoUrl: r.html_url,
+    isLive: liveUrl !== r.html_url,
+    language: r.language || '',
+    stars: r.stargazers_count || 0,
+    dateLabel: formatMonthYear(r.pushed_at),
+    sortKey: r.pushed_at || '',
+  };
+}
+
+async function loadProjects() {
+  if (projectsState) return projectsState;
+
+  try {
+    const cached = JSON.parse(sessionStorage.getItem(PROJECTS_CACHE_KEY) || 'null');
+    if (cached && (Date.now() - cached.ts) < PROJECTS_CACHE_TTL) {
+      projectsState = cached.data;
+      return projectsState;
+    }
+  } catch (e) { /* sessionStorage unavailable — skip cache */ }
+
+  const excluded = excludedRepoNames();
+  const apiUrl = `https://api.github.com/users/${GITHUB_OWNER}/repos?per_page=100&sort=pushed`;
+  try {
+    const res = await fetch(apiUrl, { headers: { 'Accept': 'application/vnd.github+json' } });
+    if (!res.ok) throw new Error('GitHub API responded ' + res.status);
+    const data = await res.json();
+    const items = (Array.isArray(data) ? data : [])
+      .filter(r => !r.private)
+      .filter(r => !excluded.has((r.name || '').toLowerCase()))
+      .filter(r => !(EXCLUDE_FORKS && r.fork))
+      .filter(r => !(EXCLUDE_ARCHIVED && r.archived))
+      .map(repoToProject)
+      .sort((a, b) => b.sortKey.localeCompare(a.sortKey));
+    projectsState = { items, error: false };
+  } catch (err) {
+    console.error('Accounting Projects: could not load repos from GitHub —', err);
+    projectsState = { items: [], error: true };
+  }
+
+  try {
+    sessionStorage.setItem(PROJECTS_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: projectsState }));
+  } catch (e) { /* sessionStorage unavailable — skip cache */ }
+
+  return projectsState;
+}
+
+function renderProjectSkeleton() {
+  const grid = document.getElementById('projectsGrid');
+  if (!grid) return;
+  grid.innerHTML = Array.from({ length: 3 }).map(() => `
+    <div class="project-card project-skeleton" aria-hidden="true">
+      <div class="skeleton-line skeleton-w40"></div>
+      <div class="skeleton-line skeleton-w80" style="height:20px; margin-top:14px;"></div>
+      <div class="skeleton-line skeleton-w100" style="margin-top:16px;"></div>
+      <div class="skeleton-line skeleton-w60"></div>
+    </div>`).join('');
+}
+
+async function renderProjects(query) {
+  if (typeof query === 'string') projectsQuery = query;
+  const grid = document.getElementById('projectsGrid');
+  if (!grid) return;
+
+  if (!projectsState) renderProjectSkeleton();
+  const state = await loadProjects();
+
+  // page may have navigated away while the fetch was in flight
+  if (!document.getElementById('page-engagements') || document.getElementById('page-engagements').hidden) return;
+
+  const q = projectsQuery.trim().toLowerCase();
+  const filtered = state.items.filter(p => {
+    if (!q) return true;
+    const hay = (p.title + ' ' + p.description + ' ' + p.language).toLowerCase();
+    return hay.includes(q);
+  });
+
+  grid.innerHTML = '';
+
+  if (state.error) {
+    grid.innerHTML = `
+      <div class="project-empty">
+        <div class="empty-icon">&#9888;</div>
+        <h3>Projects are temporarily unavailable</h3>
+        <p>Couldn't load repositories just now — please check back soon.</p>
+      </div>`;
+    return;
+  }
+
+  if (state.items.length === 0) {
+    grid.innerHTML = `
+      <div class="project-empty">
+        <div class="empty-icon">&#128203;</div>
+        <h3>No projects published yet</h3>
+        <p>New repositories appear here automatically as they're created — check back soon.</p>
+      </div>`;
+    return;
+  }
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="project-empty">
+        <div class="empty-icon">&#128269;</div>
+        <h3>No matches</h3>
+        <p>No projects match "${q}". Try a different search term.</p>
+      </div>`;
+    return;
+  }
+
+  filtered.forEach((p) => {
+    const card = document.createElement('a');
+    card.className = 'project-card reveal in-view';
+    card.href = `#project/${encodeURIComponent(p.repoName)}`;
+    card.innerHTML = `
+      <div class="project-card-top">
+        <span class="project-type">${p.language ? p.language.toUpperCase() : 'REPO'}</span>
+        <span class="project-date">${p.dateLabel || ''}</span>
+      </div>
+      <h3>${p.title}</h3>
+      <p>${p.description || ''}</p>
+      <div class="project-tags">${p.stars > 0 ? `<span class="chip">&#9733; ${p.stars}</span>` : ''}</div>
+      <span class="project-open">View project &rarr;</span>`;
+    grid.appendChild(card);
+  });
+}
+
+const searchInput = document.getElementById('projectSearch');
+if (searchInput) {
+  searchInput.addEventListener('input', (e) => renderProjects(e.target.value));
+}
+
+// ============================================================
+// PROJECT DETAIL — in-site view for a single repo
+// README on the left, a picked file previewed read-only on the right,
+// GitHub link up top.
+// ============================================================
+const readmeCache = {};
+const fileTreeCache = {};
+
+async function fetchReadmeHtml(repoName) {
+  if (readmeCache[repoName]) return readmeCache[repoName];
+  const url = `https://api.github.com/repos/${GITHUB_OWNER}/${repoName}/readme`;
+  const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github.html+json' } });
+  if (res.status === 404) {
+    readmeCache[repoName] = null;
+    return null;
+  }
+  if (!res.ok) throw new Error('README request failed: ' + res.status);
+  const html = await res.text();
+  readmeCache[repoName] = html;
+  return html;
+}
+
+function cleanReadmeHtml(html) {
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = html;
+  // strip GitHub's permalink anchor icons — clutter without their stylesheet
+  wrapper.querySelectorAll('a.anchor, svg').forEach(el => el.remove());
+  return wrapper.innerHTML;
+}
+
+function isNoisePath(path) {
+  const lower = path.toLowerCase();
+  if (lower.startsWith('.git/') || lower.startsWith('node_modules/') || lower.startsWith('.github/')) return true;
+  if (path.split('/').some(seg => seg.startsWith('.'))) return true;
+  if (lower === 'readme.md') return true; // already shown on the left
+  return false;
+}
+
+async function fetchFileTree(project) {
+  if (fileTreeCache[project.repoName]) return fileTreeCache[project.repoName];
+  const url = `https://api.github.com/repos/${GITHUB_OWNER}/${project.repoName}/git/trees/${encodeURIComponent(project.defaultBranch)}?recursive=1`;
+  const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
+  if (!res.ok) throw new Error('File tree request failed: ' + res.status);
+  const data = await res.json();
+  const files = (data.tree || [])
+    .filter(item => item.type === 'blob')
+    .map(item => item.path)
+    .filter(path => !isNoisePath(path))
+    .sort((a, b) => a.localeCompare(b));
+  fileTreeCache[project.repoName] = files;
+  return files;
+}
+
+function rawFileUrl(project, path) {
+  const encodedPath = path.split('/').map(encodeURIComponent).join('/');
+  return `https://raw.githubusercontent.com/${GITHUB_OWNER}/${project.repoName}/${encodeURIComponent(project.defaultBranch)}/${encodedPath}`;
+}
+
+function githubBlobUrl(project, path) {
+  const encodedPath = path.split('/').map(encodeURIComponent).join('/');
+  return `${project.repoUrl}/blob/${encodeURIComponent(project.defaultBranch)}/${encodedPath}`;
+}
+
+function fileCategory(path) {
+  const ext = (path.split('.').pop() || '').toLowerCase();
+  if (['xlsx', 'xls', 'xlsm', 'docx', 'doc', 'pptx', 'ppt'].includes(ext)) return 'office';
+  if (ext === 'csv') return 'csv';
+  if (ext === 'pdf') return 'pdf';
+  if (['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg', 'bmp', 'ico'].includes(ext)) return 'image';
+  if (['md', 'markdown'].includes(ext)) return 'markdown';
+  if (['txt', 'json', 'js', 'ts', 'py', 'css', 'html', 'htm', 'yml', 'yaml', 'xml', 'sql', 'ipynb', 'log', 'sh', 'java', 'c', 'cpp', 'h', 'rb', 'go', 'rs', 'php', 'ofx', 'qfx', 'qif', 'qbo'].includes(ext)) return 'text';
+  return 'other';
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function previewFallback(project, path, message) {
+  return `
+    <div class="project-detail-empty">
+      <div class="empty-icon">&#128193;</div>
+      <h3>${escapeHtml(message)}</h3>
+      <p>You can still view it directly on GitHub.</p>
+      <a class="btn btn-primary" href="${githubBlobUrl(project, path)}" target="_blank" rel="noopener">Open on GitHub &#8599;</a>
+    </div>`;
+}
+
+let activeChart = null;
+function destroyActiveChart() {
+  if (activeChart) { activeChart.destroy(); activeChart = null; }
+}
+
+function analyzeForChart(aoa) {
+  if (!aoa || aoa.length < 3) return null; // need a header + at least 2 data rows
+  const header = aoa[0].map(v => String(v ?? ''));
+  const rows = aoa.slice(1).filter(r => r.some(c => c !== '' && c !== undefined && c !== null));
+  if (rows.length < 2 || rows.length > 60) return null; // too little to plot, or too much to read
+  if (header.length < 2) return null;
+
+  const numericCols = [];
+  for (let c = 1; c < header.length; c++) {
+    let numCount = 0, filled = 0;
+    rows.forEach(r => {
+      const v = r[c];
+      if (v === '' || v === undefined || v === null) return;
+      filled++;
+      if (typeof v === 'number' || (!isNaN(parseFloat(v)) && isFinite(v))) numCount++;
+    });
+    if (filled > 0 && numCount / filled >= 0.7) numericCols.push(c);
+  }
+  if (!numericCols.length) return null;
+
+  const chosenCols = numericCols.slice(0, 4); // cap series count so the chart stays readable
+  return {
+    labels: rows.map(r => String(r[0] ?? '')),
+    datasets: chosenCols.map(c => ({
+      label: header[c] || `Column ${c + 1}`,
+      data: rows.map(r => { const v = parseFloat(r[c]); return isNaN(v) ? 0 : v; }),
+    })),
+  };
+}
+
+function renderChartView(container, chartInfo) {
+  destroyActiveChart();
+  container.innerHTML = `<div class="chart-wrap"><canvas></canvas></div>`;
+  if (typeof Chart === 'undefined') {
+    container.innerHTML = `<div class="project-detail-empty"><p>Chart library failed to load.</p></div>`;
+    return;
+  }
+  const canvas = container.querySelector('canvas');
+  const colors = ['#9D5CFF', '#C7C4DA', '#6D28D9', '#34D399'];
+  activeChart = new Chart(canvas.getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: chartInfo.labels,
+      datasets: chartInfo.datasets.map((ds, i) => ({
+        label: ds.label,
+        data: ds.data,
+        backgroundColor: colors[i % colors.length],
+        borderRadius: 4,
+      })),
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: '#C7C4DA' } } },
+      scales: {
+        x: { ticks: { color: '#A6A2C2' }, grid: { color: 'rgba(255,255,255,.06)' } },
+        y: { ticks: { color: '#A6A2C2' }, grid: { color: 'rgba(255,255,255,.06)' } },
+      },
+    },
+  });
+}
+
+function renderSheet(container, workbook, project, path, sheetIndex, viewMode) {
+  sheetIndex = sheetIndex || 0;
+  viewMode = viewMode || 'table';
+  const names = workbook.SheetNames;
+  const sheet = workbook.Sheets[names[sheetIndex]];
+
+  const aoa = XLSX.utils.sheet_to_json(sheet, { header: 1, raw: true, defval: '' });
+  const chartInfo = analyzeForChart(aoa);
+  if (viewMode === 'chart' && !chartInfo) viewMode = 'table';
+
+  const fullHtml = XLSX.utils.sheet_to_html(sheet, { editable: false });
+  // sheet_to_html returns a full <html><head>...<body> document — keep just the <table>
+  const match = fullHtml.match(/<table[\s\S]*<\/table>/);
+  const tableHtml = match ? match[0] : fullHtml;
+
+  const sheetTabsHtml = names.length > 1
+    ? `<div class="sheet-tabs">${names.map((n, i) => `<button type="button" class="sheet-tab${i === sheetIndex ? ' active' : ''}" data-i="${i}">${escapeHtml(n)}</button>`).join('')}</div>`
+    : '';
+  const viewTabsHtml = chartInfo
+    ? `<div class="view-tabs">
+         <button type="button" class="view-tab${viewMode === 'table' ? ' active' : ''}" data-view="table">Table</button>
+         <button type="button" class="view-tab${viewMode === 'chart' ? ' active' : ''}" data-view="chart">Chart</button>
+       </div>`
+    : '';
+
+  if (viewMode !== 'chart') destroyActiveChart();
+
+  container.innerHTML = `
+    <div class="sheet-controls">${sheetTabsHtml}${viewTabsHtml}</div>
+    <div class="sheet-view-area"></div>`;
+
+  const viewArea = container.querySelector('.sheet-view-area');
+  if (viewMode === 'chart' && chartInfo) {
+    renderChartView(viewArea, chartInfo);
+  } else {
+    viewArea.innerHTML = `<div class="spreadsheet-scroll">${tableHtml}</div>`;
+  }
+
+  container.querySelectorAll('.sheet-tab').forEach(btn => {
+    btn.addEventListener('click', () => renderSheet(container, workbook, project, path, parseInt(btn.dataset.i, 10), 'table'));
+  });
+  container.querySelectorAll('.view-tab').forEach(btn => {
+    btn.addEventListener('click', () => renderSheet(container, workbook, project, path, sheetIndex, btn.dataset.view));
+  });
+}
+
+async function renderCsvFile(container, project, path) {
+  if (typeof XLSX === 'undefined') {
+    container.innerHTML = previewFallback(project, path, "Couldn't load the spreadsheet viewer");
+    return;
+  }
+  try {
+    const res = await fetch(rawFileUrl(project, path));
+    if (!res.ok) throw new Error('fetch failed ' + res.status);
+    const text = await res.text();
+    const wb = XLSX.read(text, { type: 'string' });
+    renderSheet(container, wb, project, path);
+  } catch (err) {
+    console.error('CSV preview failed:', err);
+    container.innerHTML = previewFallback(project, path, "Couldn't load this file");
+  }
+}
+
+function renderOfficeFile(container, project, path) {
+  // Renders the actual file — real formatting, real embedded charts — via
+  // Microsoft's free Office Online viewer, rather than us reinterpreting the
+  // data ourselves. Fully read-only; no editing capability is exposed.
+  const fileUrl = rawFileUrl(project, path);
+  const embedUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(fileUrl)}`;
+  container.innerHTML = `<iframe class="project-detail-frame" title="${escapeHtml(path)}" src="${embedUrl}" allowfullscreen></iframe>`;
+}
+
+async function renderPdfFile(container, project, path) {
+  try {
+    const res = await fetch(rawFileUrl(project, path));
+    if (!res.ok) throw new Error('fetch failed ' + res.status);
+    const blob = await res.blob();
+    const objectUrl = URL.createObjectURL(blob);
+    container.innerHTML = `<iframe class="project-detail-frame" title="${escapeHtml(path)}" src="${objectUrl}"></iframe>`;
+  } catch (err) {
+    console.error('PDF preview failed:', err);
+    container.innerHTML = previewFallback(project, path, "Couldn't load this PDF");
+  }
+}
+
+function renderImageFile(container, project, path) {
+  const url = rawFileUrl(project, path);
+  const img = document.createElement('img');
+  img.src = url;
+  img.alt = path;
+  img.onerror = () => { container.innerHTML = previewFallback(project, path, "Couldn't load this image"); };
+  container.innerHTML = '';
+  const wrap = document.createElement('div');
+  wrap.className = 'image-preview-wrap';
+  wrap.appendChild(img);
+  container.appendChild(wrap);
+}
+
+async function renderMarkdownFile(container, project, path) {
+  try {
+    const res = await fetch(rawFileUrl(project, path));
+    if (!res.ok) throw new Error('fetch failed ' + res.status);
+    const text = await res.text();
+    const renderRes = await fetch('https://api.github.com/markdown', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/vnd.github+json' },
+      body: JSON.stringify({ text, mode: 'gfm', context: `${GITHUB_OWNER}/${project.repoName}` }),
+    });
+    if (!renderRes.ok) throw new Error('render failed ' + renderRes.status);
+    const html = await renderRes.text();
+    container.innerHTML = `<div class="readme-body">${cleanReadmeHtml(html)}</div>`;
+  } catch (err) {
+    console.error('Markdown preview failed:', err);
+    container.innerHTML = previewFallback(project, path, "Couldn't render this file");
+  }
+}
+
+async function renderTextFile(container, project, path) {
+  try {
+    const res = await fetch(rawFileUrl(project, path));
+    if (!res.ok) throw new Error('fetch failed ' + res.status);
+    const text = await res.text();
+    container.innerHTML = `<pre class="code-preview"><code>${escapeHtml(text)}</code></pre>`;
+  } catch (err) {
+    console.error('Text preview failed:', err);
+    container.innerHTML = previewFallback(project, path, "Couldn't load this file");
+  }
+}
+
+function renderFilePreview(container, project, path) {
+  destroyActiveChart();
+  container.innerHTML = `<div class="project-detail-empty"><div class="empty-icon">&#8987;</div><p>Loading&hellip;</p></div>`;
+  const cat = fileCategory(path);
+  if (cat === 'office') return renderOfficeFile(container, project, path);
+  if (cat === 'csv') return renderCsvFile(container, project, path);
+  if (cat === 'pdf') return renderPdfFile(container, project, path);
+  if (cat === 'image') return renderImageFile(container, project, path);
+  if (cat === 'markdown') return renderMarkdownFile(container, project, path);
+  if (cat === 'text') return renderTextFile(container, project, path);
+  container.innerHTML = previewFallback(project, path, 'Preview not available for this file type');
+}
+
+const PREVIEW_PRIORITY = ['office', 'pdf', 'image', 'csv', 'markdown', 'text', 'other'];
+
+function pickDefaultFile(files) {
+  let best = null, bestRank = PREVIEW_PRIORITY.length;
+  files.forEach(f => {
+    const rank = PREVIEW_PRIORITY.indexOf(fileCategory(f));
+    if (rank !== -1 && rank < bestRank) { best = f; bestRank = rank; }
+  });
+  return best || files[0] || null;
+}
+
+async function loadProjectFiles(project) {
+  const pickerBar = document.getElementById('filePickerBar');
+  const select = document.getElementById('projectFileSelect');
+  const previewContent = document.getElementById('previewContent');
+
+  pickerBar.hidden = true;
+  previewContent.innerHTML = `<div class="project-detail-empty"><div class="empty-icon">&#8987;</div><p>Looking through the repository&hellip;</p></div>`;
+
+  let files;
+  try {
+    files = await fetchFileTree(project);
+  } catch (err) {
+    console.error('Project detail: could not load file list —', err);
+    previewContent.innerHTML = previewFallback(project, '', "Couldn't load this repository's files");
+    return;
+  }
+
+  if (document.getElementById('page-project-detail').hidden) return; // navigated away
+
+  if (!files.length) {
+    previewContent.innerHTML = `
+      <div class="project-detail-empty">
+        <div class="empty-icon">&#128193;</div>
+        <h3>No files to preview</h3>
+        <p>This repository doesn't have any files yet.</p>
+        <a class="btn btn-primary" href="${project.repoUrl}" target="_blank" rel="noopener">Open on GitHub &#8599;</a>
+      </div>`;
+    return;
+  }
+
+  select.innerHTML = files.map(f => `<option value="${escapeHtml(f)}">${escapeHtml(f)}</option>`).join('');
+  pickerBar.hidden = false;
+
+  const defaultFile = pickDefaultFile(files);
+  select.value = defaultFile;
+  renderFilePreview(previewContent, project, defaultFile);
+
+  select.onchange = () => renderFilePreview(previewContent, project, select.value);
+}
+
+async function showProjectDetail(slug) {
+  const titleEl = document.getElementById('projectDetailTitle');
+  const descEl = document.getElementById('projectDetailDesc');
+  const githubLink = document.getElementById('projectDetailGithub');
+  const readmeEl = document.getElementById('projectDetailReadme');
+  const pickerBar = document.getElementById('filePickerBar');
+  const previewContent = document.getElementById('previewContent');
+  if (!titleEl) return;
+
+  // reset to a loading state immediately
+  titleEl.textContent = 'Loading…';
+  descEl.textContent = '';
+  githubLink.href = '#';
+  pickerBar.hidden = true;
+  readmeEl.innerHTML = `
+    <div class="skeleton-line skeleton-w40" style="height:20px;"></div>
+    <div class="skeleton-line skeleton-w100" style="margin-top:16px;"></div>
+    <div class="skeleton-line skeleton-w80"></div>
+    <div class="skeleton-line skeleton-w60"></div>`;
+  previewContent.innerHTML = `<div class="project-detail-empty"><div class="empty-icon">&#8987;</div><p>Loading preview&hellip;</p></div>`;
+
+  const state = await loadProjects();
+  const project = state.items.find(p => p.repoName.toLowerCase() === slug.toLowerCase());
+
+  // page may have navigated away while the fetch was in flight
+  const detailPage = document.getElementById('page-project-detail');
+  if (!detailPage || detailPage.hidden) return;
+
+  if (!project) {
+    titleEl.textContent = 'Project not found';
+    descEl.textContent = "This project isn't available — it may have been renamed or removed.";
+    githubLink.href = `https://github.com/${GITHUB_OWNER}`;
+    readmeEl.innerHTML = '';
+    previewContent.innerHTML = '';
+    document.title = 'Project not found — Emily Naidoo';
+    return;
+  }
+
+  titleEl.textContent = project.title;
+  descEl.textContent = project.description;
+  githubLink.href = project.repoUrl;
+  document.title = project.title + ' — Emily Naidoo';
+
+  loadProjectFiles(project);
+
+  // README (left side)
+  try {
+    const html = await fetchReadmeHtml(project.repoName);
+    if (document.getElementById('page-project-detail').hidden) return; // navigated away
+    if (html) {
+      readmeEl.innerHTML = `<div class="readme-body">${cleanReadmeHtml(html)}</div>`;
+    } else {
+      readmeEl.innerHTML = `<p class="readme-empty">No README available for this project yet.</p>`;
+    }
+  } catch (err) {
+    console.error('Project detail: could not load README —', err);
+    readmeEl.innerHTML = `<p class="readme-empty">Couldn't load the README right now.</p>`;
+  }
+}
+
+// ============================================================
+// PARTICLE BACKGROUND
+// ============================================================
+(function initParticles() {
+  const canvas = document.getElementById('particles');
+  if (!canvas || !canvas.getContext) return;
+  const ctx = canvas.getContext('2d');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let particles = [];
+  let w, h;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const COUNT = Math.min(60, Math.max(24, Math.floor(window.innerWidth / 26)));
+  for (let i = 0; i < COUNT; i++) {
+    particles.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.5 + 0.6,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
+      purple: Math.random() > 0.45
+    });
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.purple ? 'rgba(157,92,255,0.55)' : 'rgba(199,196,218,0.4)';
+      ctx.fill();
+    });
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 110) {
+          ctx.strokeStyle = 'rgba(157,92,255,' + (0.12 * (1 - dist / 110)) + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    if (!reduceMotion) requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+// Initial route
+activatePage(currentHash(), { skipScroll: true });
+if (currentHash() === 'engagements') renderProjects();
+
+</script>
+</body>
 </html>
